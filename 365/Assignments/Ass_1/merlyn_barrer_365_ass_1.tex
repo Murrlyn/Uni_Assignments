@@ -1,0 +1,96 @@
+%This is my super simple Real Analysis Homework template
+
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage[]{amsmath}
+\usepackage[]{amsmath, mathtools}
+\usepackage[]{amssymb} %gives us the character \varnothing
+\usepackage{xcolor}
+\usepackage{xparse}
+\usepackage[italicdiff]{physics}
+\usepackage{parskip}
+
+
+% definition of the "problem" environment.
+\newsavebox{\problembox}
+\newcounter{problem}[section]
+
+\newenvironment{problem}[1][]
+    {\refstepcounter{problem}\par\medskip\noindent
+    \textbf{Problem~\theproblem. #1} \rmfamily \em} %chktex 6
+    {\medskip}
+
+% Definition of the "subproblem" environment.
+\newsavebox{\subproblembox}
+\newcounter{subproblem}[problem]
+
+\newenvironment{subproblem}[1][]
+    {\refstepcounter{subproblem}\par\medskip\noindent
+    \textbf{(\roman{subproblem}) #1} \rmfamily \em} %chktex 6
+    {\par}
+
+% Notation for cyclic groups
+\newcommand{\cyc}[1]{\langle#1\rangle}
+
+\newcommand{\set}[1]{\left\{ #1 \right\}}
+\NewDocumentCommand\seq{O{1}O{\infty}mm}
+    {\set{#3_#4}_{#4=#1}^{#2}}
+
+\DeclareMathOperator{\lcm}{lcm}
+
+% Blackboard notation
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+
+\newcommand{\X}{\mathbb{X}}
+
+\title{MATH343 Assignment 9}
+\author{Merlyn Barrer 33293451}
+%This information doesn't actually show up on your document unless you use the maketitle command below
+
+\begin{document}
+\maketitle %This command prints the title based on information entered above
+
+Let \(E, F\) be subsets of a metric space \((X, \rho)\).
+\begin{subproblem}
+    If \(E \subseteq F\), show that \(\overline{E} \subseteq \overline{F}\).
+\end{subproblem}
+
+Given arbitrary \(x \in \overline E\), by Theorem 3.16, there exists a convergent sequence \(\set{x_n} \subseteq{E}\) such that \(x_n \to x\) .
+\(E \subseteq F\), so we have \(\set{x_n} \subseteq F\).
+Making use of Theorem 3.16 again, this implies \(x \in \overline{F}\).
+Therefore \(E \subseteq F\).
+
+\begin{subproblem}
+    Prove that \(\overline{E \cap F} \subseteq \overline{E} \cap \overline{F}\).
+    In \((\R, d)\) give an example of two sets \(E_1\) and \(E_2\) such that
+    \begin{equation*}
+        \overline{E_1 \cap E_2} \neq \overline{E_1} \cap \overline{E_2}.
+    \end{equation*}
+\end{subproblem}
+
+
+Note that \(E \subseteq \overline E\) and \(F \subseteq \overline F\).
+Therefore \(E \cap F \subseteq \overline{E} \cap \overline F\).
+By (i), this implies that \(\overline{E \cap F} \subseteq \overline{\overline{E} \cap \overline{F}}\).
+\(\overline{E}\) and \(\overline{F}\) are closed, so \(\overline{E} \cap \overline{F}\) is closed also.
+Therefore \(\overline{\overline{E} \cap \overline{F}} = \overline{E} \cap \overline{F}\).
+Therefore \(\overline{E \cap F} \subseteq \overline{E} \cap \overline{F}\).
+
+Take \(E_1 = (69, 6969)\) and \(E_2 = (6969, 696969)\).
+Then
+\begin{gather*}
+    \overline{E_1 \cap E_2} = \overline{\emptyset} = \emptyset,\\
+    \overline{E_1} \cap \overline{E_2} = [69, 6969] \cap [6969, 696969] = \set{6969}.
+\end{gather*}
+So \begin{equation*}
+    \overline{E_1 \cap E_2} \neq \overline{E_1} \cap \overline{E_2}.
+\end{equation*}
+
+
+\end{document} %chktex 17,
